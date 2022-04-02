@@ -1,3 +1,6 @@
+from cProfile import label
+from logging import PlaceHolder
+from tkinter import Label
 from django import forms
 from .models import NotesModel
 from crispy_forms.helper import FormHelper
@@ -10,11 +13,11 @@ class CreateNoteModelForm(forms.ModelForm):
         self.helper.form_class = 'form-inline'
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
-            Field('header'),
-            Field('body'),
-            Field('status'),
+            Field('header', css_class="form-control mb-2", PlaceHolder="Заголовок..."),
+            Field('body', css_class="form-control mb-2", PlaceHolder="Описание..."),
+            Field('status', css_class="form-check-input mb-2 text-info"),
             ButtonHolder (
-                Submit('order', 'Order', css_class='btn btn-success')
+                Submit('order', 'Создать заметку', css_class='btn btn-success mb-2')
             )
         )
     class Meta:
@@ -24,3 +27,8 @@ class CreateNoteModelForm(forms.ModelForm):
             'body',
             'status'
         ]
+        labels = {
+            'header': 'Заголовок',
+            'body': 'Описание',
+            'status': 'Сделано',
+        }
