@@ -17,7 +17,7 @@ class CreateNoteModelForm(forms.ModelForm):
             Field('body', css_class="form-control mb-2", PlaceHolder="Описание..."),
             Field('status', css_class="form-check-input mb-2 text-info"),
             ButtonHolder (
-                Submit('order', 'Создать заметку', css_class='btn btn-success mb-2')
+                Submit('create', 'Добавить', css_class='btn btn-success mb-2')
             )
         )
     class Meta:
@@ -30,5 +30,5 @@ class CreateNoteModelForm(forms.ModelForm):
         labels = {
             'header': 'Заголовок',
             'body': 'Описание',
-            'status': 'Сделано',
+            'status': 'Статус',
         }

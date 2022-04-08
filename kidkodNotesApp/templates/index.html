@@ -13,14 +13,25 @@
         </div>
         <div class="w-100 d-grid mt-3">
             {% for note in notes %}
-                <div class="m-2 p-2 w-25" style="background-color: rgb(143, 143, 143);">
-                    <h3 class="mb-0 text-light">{{ note.header }}</h3>
-                    <h4 class="text-info">{{ note.body }}</h4>
-                    {% if note.status == False %}
-                        <h4 class="mt-0 text-warning">Не сделано</h4>
-                    {% else %}
-                        <h4 class="mt-0 text-success">Сделано</h4>
-                    {% endif %}
+                <div class="w-25 border mt-2">
+                    <div class="d-flex justify-content-center align-items-center pb-1 border-bottom bg-light">
+                        <span class="mb-0 text-dark fw-normal">{{ note.header }}</span>
+                    </div>
+                    <div class="pb-4">
+                        <span class="fw-normal">{{ note.body }}</span>
+                    </div>
+                    <div class="border-top pb-2 bg-light">
+                        <span class="d-block mb-2" style="font-size: 12px;">Статус:</span>
+                        {% if note.status == False %}
+                            <span class="bg-warning text-dark rounded p-1 fw-bold fs-6">Не сделано</span>
+                            <a class="m-1 p-1 text-light bg-success text-decoration-none rounded fw-light fs-6" href="/">Сделано</a>
+                        {% else %}
+                            <span class="bg-success text-light rounded p-1 fw-normal">Сделано</span>
+                            <a class="m-1 p-1 text-light bg-danger text-decoration-none rounded fw-light fs-6" href="/"> Не сделано</a>
+                        {% endif %}
+                        <a href="/" class="btn-outline-primary border border-primary fw-normal text-decoration-none rounded p-1 fs-6">Изменить</a>
+                        <a href="" class="btn-outline-danger m-2 w-25 fs-6 p-1 rounded border border-danger text-decoration-none">X</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
