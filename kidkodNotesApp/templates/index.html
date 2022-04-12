@@ -22,12 +22,12 @@
                     </div>
                     <div class="border-top pb-2 bg-light">
                         <span class="d-block mb-2" style="font-size: 12px;">Статус:</span>
-                        {% if note.status == False %}
+                        {% if note.status != True %}
                             <span class="bg-warning text-dark rounded p-1 fw-bold fs-6">Не сделано</span>
-                            <a class="m-1 p-1 text-light bg-success text-decoration-none rounded fw-light fs-6" href="/">Сделано</a>
+                            <a class="m-1 p-1 text-light bg-success text-decoration-none rounded fw-light fs-6" href="change_status/{{note.id}}">Сделано</a>
                         {% else %}
                             <span class="bg-success text-light rounded p-1 fw-normal">Сделано</span>
-                            <a class="m-1 p-1 text-light bg-danger text-decoration-none rounded fw-light fs-6" href="/"> Не сделано</a>
+                            <a class="m-1 p-1 text-light bg-danger text-decoration-none rounded fw-light fs-6" href="change_status/{{note.id}}"> Не сделано</a>
                         {% endif %}
                         <a href="/" class="btn-outline-primary border border-primary fw-normal text-decoration-none rounded p-1 fs-6">Изменить</a>
                         <a href="" class="btn-outline-danger m-2 w-25 fs-6 p-1 rounded border border-danger text-decoration-none">X</a>

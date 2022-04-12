@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from notes.views import NotesHomepageView, CreateNoteView
+from notes.views import NotesHomepageView, CreateNoteView, change_status
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', NotesHomepageView.as_view(), name="index"),
+    path('change_status/<int:pk>/', change_status, name='change_status'),
     path('create_note/', CreateNoteView.as_view(), name="create_note"),
 ]
