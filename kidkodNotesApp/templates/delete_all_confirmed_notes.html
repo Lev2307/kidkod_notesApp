@@ -1,5 +1,32 @@
-{% block title %}Delte All confirmed Notes{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}Delete all confirmed notes{% endblock title %}
 
 {% block content %}
-
+    {% if notes.count > 0 %}
+    <section class="d-flex vh-100 flex-column justify-content-center align-items-center">
+        <h1 class="fs-4">Удалить эти задачи?</h1>
+        {% for note in notes %}
+            <div class="w-25 border mt-2 fs-5 mt-2">
+                <div class="d-flex justify-content-center align-items-center pb-1 border-bottom bg-light">
+                    <span class="mb-0 text-dark fw-normal">{{ note.header }}</span>
+                </div>
+                <div class="pb-4">
+                    <span class="fw-normal ps-2">{{ note.body }}</span>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="d-flex justify-content-center align-items-center">
+            <a href="/" class="btn btn-success mt-2">Назад</a>
+            <form action="" method="post" class="d-inline">
+                {% csrf_token %}
+                <button class="btn btn-danger fw-normal mt-2 ms-4" type="submit">Удалить?</button>
+            </form>
+        </div>
+    </section>
+    {% else %}
+        <section class="d-flex vh-100 flex-column justify-content-center align-items-center">
+            <h1 class="fs-4">У вас нет завершённых задач =/</h1>
+        </section>
+    {% endif %}
 {% endblock content %}

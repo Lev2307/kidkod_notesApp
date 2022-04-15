@@ -6,7 +6,7 @@ from django.views.generic.edit import FormMixin
 from django.views.generic import ListView, UpdateView, DeleteView
 
 # Create your views here.
-class NotesHomepageView(FormMixin ,ListView):
+class NotesHomepageView(FormMixin, ListView):
     template_name = 'index.html'
     model = NotesModel
 
@@ -56,6 +56,9 @@ class DeleteAllConfirmedNotesView(ListView):
     template_name = 'delete_all_confirmed_notes.html'
     success_url = reverse_lazy('index')
 
+    def get(self, request, *args, **kwargs):
+        notes = NotesModel.objects.filter(status=True)
+        return render(request, self.template_name, {'notes': notes})
     def post(self, request, *args, **kwargs):
         notes = NotesModel.objects.filter(status=True).delete()
         return redirect('index')
