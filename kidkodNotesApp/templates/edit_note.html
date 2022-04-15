@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Note{% endblock title %}
+
+
+{% block content %}
+    <section class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center">
+        {% crispy form %}
+        <a href="/" class="btn btn-outline-success w-25 mt-3">Назад</a>
+    </section>
+{% endblock %}

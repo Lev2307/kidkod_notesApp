@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Note{% endblock title %}
+
+{% block content %}
+    <section class="vh-100 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="fs-4">Удалить эту задачу?</h1>
+        <div class="w-25 border mt-2 fs-5 mt-2">
+            <div class="d-flex justify-content-center align-items-center pb-1 border-bottom bg-light">
+                <span class="mb-0 text-dark fw-normal">{{ note.header }}</span>
+            </div>
+            <div class="pb-4">
+                <span class="fw-normal">{{ note.body }}</span>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+            <a href="/" class="btn btn-success">Нет</a>
+            <form action="" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger ms-4">Удалить?</button>
+            </form>
+        </div>
+    </section>
+{% endblock content %}
