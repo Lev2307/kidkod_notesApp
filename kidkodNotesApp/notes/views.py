@@ -4,16 +4,19 @@ from .forms import CreateNoteModelForm, EditNoteModelForm
 from .models import NotesModel
 from django.views.generic.edit import FormMixin
 from django.views.generic import ListView, UpdateView, DeleteView
+from django.core.paginator import Paginator
 
 # Create your views here.
-class NotesHomepageView(FormMixin, ListView):
+class NotesHomepageView(ListView):
     template_name = 'index.html'
     model = NotesModel
+    paginate_by = 4
+    context_object_name = 'notes'
 
-    def get(self, request, *args, **kwargs):
-        form = CreateNoteModelForm()
-        queryset = NotesModel.objects.all()
-        return render(request, self.template_name, {'form': form, 'notes': queryset})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CreateNoteModelForm()
+        return context
 
     def post(self, request, *args, **kwargs):
         form = CreateNoteModelForm(request.POST)
