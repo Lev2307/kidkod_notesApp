@@ -1,6 +1,3 @@
-from cProfile import label
-from logging import PlaceHolder
-from tkinter import Label
 from django import forms
 from .models import NotesModel
 from crispy_forms.helper import FormHelper
@@ -25,7 +22,7 @@ class CreateNoteModelForm(forms.ModelForm):
         fields = [
             'header',
             'body',
-            'status'
+            'status',
         ]
         labels = {
             'header': 'Заголовок',
