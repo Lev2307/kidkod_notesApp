@@ -10,6 +10,7 @@
     <section class="h-100 d-flex flex-column align-items-center justify-content-center">
         <div>
             {% crispy form %}
+            <a href="delete_all_confirmed_notes/" class="btn btn-outline-danger">Удалить все завершённые?</a>
         </div>
         <div class="w-100 d-grid mt-3">
             {% for note in notes %}
@@ -29,8 +30,8 @@
                             <span class="bg-success text-light rounded p-1 fw-normal">Сделано</span>
                             <a class="m-1 p-1 text-light bg-danger text-decoration-none rounded fw-light fs-6" href="change_status/{{note.id}}"> Не сделано</a>
                         {% endif %}
-                        <a href="/" class="btn-outline-primary border border-primary fw-normal text-decoration-none rounded p-1 fs-6">Изменить</a>
-                        <a href="" class="btn-outline-danger m-2 w-25 fs-6 p-1 rounded border border-danger text-decoration-none">X</a>
+                        <a href="edit_note/{{ note.id }}/" class="btn-outline-primary border border-primary fw-normal text-decoration-none rounded p-1 fs-6">Изменить</a>
+                        <a href="delete_note/{{ note.id }}/" class="btn-outline-danger m-2 w-25 fs-6 p-1 rounded border border-danger text-decoration-none">X</a>
                     </div>
                 </div>
             {% endfor %}
