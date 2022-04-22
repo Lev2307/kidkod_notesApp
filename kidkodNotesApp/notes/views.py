@@ -16,6 +16,7 @@ class NotesHomepageView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = CreateNoteModelForm()
+        context['confirmed'] = NotesModel.objects.filter(status=True)
         return context
 
     def post(self, request, *args, **kwargs):
