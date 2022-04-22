@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
-from .forms import CreateNoteModelForm, EditNoteModelForm
+from .forms import CreateNoteModelForm, EditNoteModelForm, DeleteAllChosenNotes
 from .models import NotesModel
 from django.views.generic.edit import FormMixin
 from django.views.generic import ListView, UpdateView, DeleteView
@@ -17,6 +17,7 @@ class NotesHomepageView(ListView):
         context = super().get_context_data(**kwargs)
         context['form'] = CreateNoteModelForm()
         context['confirmed'] = NotesModel.objects.filter(status=True)
+        context['chosen_form'] = DeleteAllChosenNotes()
         return context
 
     def post(self, request, *args, **kwargs):

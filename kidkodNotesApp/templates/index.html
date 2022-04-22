@@ -18,11 +18,16 @@
             <div class="row row-cols-2 justify-content-center">
                 {% for note in notes %}
                     <div class="col-5 border m-2 p-0">
-                        <div class="d-flex justify-content-center align-items-center pb-1 border-bottom bg-light">
+                        <div class="d-flex justify-content-center align-items-center pb-1 border-bottom bg-light position-relative">
                             <span class="mb-0 text-dark fw-normal">{{ note.header }}</span>
+                            <form class="position-absolute top-0 end-0 p-1" action="">
+                                {% csrf_token %}
+                                {{chosen_form.as_p}}
+                            </form>
                         </div>
                         <div class="pb-4">
                             <span class="fw-normal ps-2">{{ note.body }}</span>
+                            <span>{{ note.checkbox.status }}</span>
                         </div>
                         <div class="border-top pb-3 bg-light">
                             <span class="d-block mb-2 ms-1">Статус:</span>

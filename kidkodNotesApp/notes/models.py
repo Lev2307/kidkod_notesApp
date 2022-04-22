@@ -8,6 +8,7 @@ class NotesModel(models.Model):
     body = models.TextField(max_length=200, null=False, blank=False)
     status = models.BooleanField(default=False)
     date = models.DateTimeField(default=timezone.now)
+    checkbox = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-date']

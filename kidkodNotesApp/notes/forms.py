@@ -56,3 +56,13 @@ class EditNoteModelForm(forms.ModelForm):
             'body': 'Описание',
             'status': 'Статус',
         }
+
+class DeleteAllChosenNotes(forms.ModelForm):
+    class Meta:
+        model = NotesModel
+        fields = [
+            'checkbox'
+        ]
+        labels = {
+            'checkbox': 'Label'
+        }
