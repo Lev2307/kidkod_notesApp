@@ -56,3 +56,21 @@ class EditNoteModelForm(forms.ModelForm):
             'body': 'Описание',
             'status': 'Статус',
         }
+
+class DeleteAllChosenNotes(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-inline d-flex justify-content-center align-items-center'
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Field('checkbox')
+        )
+    class Meta:
+        model = NotesModel
+        fields = [
+            'checkbox'
+        ]
+        labels = {
+            'checkbox': ' '
+        }
