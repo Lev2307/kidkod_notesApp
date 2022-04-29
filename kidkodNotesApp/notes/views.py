@@ -17,11 +17,16 @@ class NotesHomepageView(ListView):
         context = super().get_context_data(**kwargs)
         context['form'] = CreateNoteModelForm()
         context['confirmed'] = NotesModel.objects.filter(status=True)
+        context['delete'] = NotesModel.objects.filter(checkbox=True)
         context['chosen_form'] = DeleteAllChosenNotes()
         return context
 
     def post(self, request, *args, **kwargs):
         form = CreateNoteModelForm(request.POST)
+        # form_delete = DeleteAllChosenNotes(request.POST or None)
+        # if form_delete.is_valid():
+        #     new_delete_form = form_delete.save(commit=False)
+        #     new_delete_form.save()
         if form.is_valid():
             header = form.cleaned_data.get('header')
             body = form.cleaned_data.get('body')
@@ -64,6 +69,28 @@ class DeleteAllConfirmedNotesView(ListView):
     def get(self, request, *args, **kwargs):
         notes = NotesModel.objects.filter(status=True)
         return render(request, self.template_name, {'notes': notes})
+
     def post(self, request, *args, **kwargs):
         notes = NotesModel.objects.filter(status=True).delete()
         return redirect('index')
+
+class DeleteAllChosenNote(DeleteView):
+    model = NotesModel
+    template_name = 'delete_all_chosen_notes.html'
+    success_url = reverse_lazy('index')
+    
+    def post(self, request, *args, **kwargs):
+        form = DeleteAllChosenNotes(request.POST)
+        if form.is_valid():
+            checkbox = form.cleaned_data.get('checkbox')
+
+def checkbox_delete_check(request, pk):
+    note = get_object_or_404(NotesModel, id=pk)
+    if note.checkbox == False:
+        note.checkbox = True
+    else:
+        note.checkbox = False
+    note.save()
+    print(note.checkbox)
+    return redirect('index')
+            

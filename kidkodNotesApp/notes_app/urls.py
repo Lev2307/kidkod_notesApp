@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from notes.views import NotesHomepageView, change_status, EditNoteView, DeleteNoteView, DeleteAllConfirmedNotesView
+from notes.views import NotesHomepageView, change_status, EditNoteView, DeleteNoteView, DeleteAllConfirmedNotesView, DeleteAllChosenNote, checkbox_delete_check
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,8 @@ urlpatterns = [
     path('edit_note/<int:pk>/', EditNoteView.as_view(), name="edit_note"),
     path('delete_note/<int:pk>/', DeleteNoteView.as_view(), name="delete_note"),
     path('delete_all_confirmed_notes/', DeleteAllConfirmedNotesView.as_view(), name="delete_allconfirmed_note"),
+    path('del/', DeleteAllChosenNote.as_view()),
+    path('check/<int:pk>/', checkbox_delete_check),
+
+
 ]

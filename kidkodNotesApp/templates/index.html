@@ -10,6 +10,9 @@
     <section class="h-100 d-flex flex-column align-items-center justify-content-center overflow-hidden">
         <div>
             {% crispy form %}
+            {% if delete.count > 0 %}
+                <a href="del/">Удалить все выбранные?</a>
+            {% endif %}
             {% if confirmed.count > 0 %}
                 <a href="delete_all_confirmed_notes/" class="btn btn-outline-danger">Удалить все завершённые?</a>
             {% endif %}
@@ -18,16 +21,18 @@
             <div class="row row-cols-2 justify-content-center">
                 {% for note in notes %}
                     <div class="col-5 border m-2 p-0">
-                        <div class="d-flex justify-content-center align-items-center pb-1 border-bottom bg-light position-relative">
+                        <div class="d-flex justify-content-center align-items-center pb-3 border-bottom bg-light position-relative">
                             <span class="mb-0 text-dark fw-normal">{{ note.header }}</span>
-                            <form class="position-absolute top-0 end-0 p-1" action="">
-                                {% csrf_token %}
-                                {{chosen_form.as_p}}
-                            </form>
+                            <div class="position-absolute top-0 end-0 p-1">
+                                {% if delete.checkbox == False %}
+                                    <a href="check/{{note.id}}/"><input type="checkbox" name="checkbox" id="id_checkbox"></a>
+                                {% else %}
+                                    <a href="check/{{note.id}}/"><input type="checkbox" name="checkbox" id="id_checkbox"></a>
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="pb-4">
                             <span class="fw-normal ps-2">{{ note.body }}</span>
-                            <span>{{ note.checkbox.status }}</span>
                         </div>
                         <div class="border-top pb-3 bg-light">
                             <span class="d-block mb-2 ms-1">Статус:</span>
