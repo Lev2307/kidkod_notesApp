@@ -79,6 +79,7 @@ class DeleteAllChosenNote(ListView):
         return render(request, self.template_name, {'notes': queryset})
 
     def post(self, request, *args, **kwargs):
+        a = 1
         queryset = NotesModel.objects.filter(checkbox=True).delete()
         return redirect(self.success_url)
     

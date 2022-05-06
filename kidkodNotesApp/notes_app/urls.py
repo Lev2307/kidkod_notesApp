@@ -26,6 +26,4 @@ urlpatterns = [
     path('delete_all_confirmed_notes/', DeleteAllConfirmedNotesView.as_view(), name="delete_allconfirmed_note"),
     path('delete_selected/', DeleteAllChosenNote.as_view()),
     path('check/<int:pk>/', checkbox_delete_check),
-
-
 ]
