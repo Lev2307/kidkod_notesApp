@@ -25,9 +25,9 @@
                             <span class="mb-0 text-dark fw-normal">{{ note.header }}</span>
                             <div class="position-absolute top-0 end-0 p-1">
                                 {% if note.checkbox %}
-                                    <a href="check/{{note.id}}/"><input type="checkbox" value="{{note.id}}" checked></a>
+                                    <a href="check/{{note.id}}/"><input type="checkbox" value="{{note.id}}" onclick="window.location.href='check/{{note.id}}/'" checked></a>
                                 {% else %}
-                                    <a href="check/{{note.id}}/"><input type="checkbox" value="{{note.id}}"></a>
+                                    <a href="check/{{note.id}}/"><input type="checkbox" value="{{note.id}}" onclick="window.location.href='check/{{note.id}}/'"></a>
                                 {% endif %}
                             </div>
                         </div>
